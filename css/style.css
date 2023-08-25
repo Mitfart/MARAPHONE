@@ -1,0 +1,138 @@
+:root {
+    --c-board-first: #fff;
+    --c-board-second: #000;
+
+    --c-piece-first-border: #C6C5C5;
+    --c-piece-first-main: #F9F4F4;
+    --c-piece-first-inner: #DBD8D8;
+
+    --c-piece-second-border: #BAB9B9;
+    --c-piece-second-main: #2B2B2B;
+    --c-piece-second-inner: #181818;
+}
+
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: grey;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.board {
+    --board-width: 0;
+    --board-height: 0;
+    --cell-size: 0;
+
+    width: calc(var(--cell-size) * var(--board-width));
+    height: calc(var(--cell-size) * var(--board-height));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    border-radius: .5rem;
+    border: .5rem solid var(--c-board-first);
+    box-shadow: 0 0 0 .25rem var(--c-board-second),
+    0 2.25rem 2.5rem -.25rem var(--c-board-second),
+    0 2rem 0 .25rem var(--c-board-second);
+
+    position: relative;
+}
+
+.board__row {
+    display: flex;
+    align-items: stretch;
+    flex-grow: 1;
+}
+
+.board__row:nth-child(2n) {
+    flex-direction: row-reverse;
+}
+
+.board__cell {
+    background: var(--c-board-first);
+    flex-grow: 1;
+}
+
+.board__cell:nth-child(2n) {
+    background: var(--c-board-second);
+}
+
+.board__cell_highlighted {
+    position: relative;
+}
+
+.board__cell_highlighted:after {
+    content: '';
+
+    width: 100%;
+    height: 100%;
+
+    border: .5rem solid green;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+
+.piece {
+    --main-color: var(--c-piece-first-main);
+    --border-color: var(--c-piece-first-border);
+
+    width: calc(var(--cell-size) * .8);
+    height: calc(var(--cell-size) * .8);
+    border-radius: 100%;
+    border: .25em solid var(--border-color);
+    background: var(--main-color);
+
+    position: absolute;
+    translate: calc(var(--cell-size) * .05) calc(var(--cell-size) * .05);
+
+    transition: .25s ease;
+    transition-property: box-shadow, top, left;
+    box-shadow: 0 0 0 var(--main-color);
+}
+
+.piece:before {
+    content: '';
+
+    width: 60%;
+    height: 60%;
+    border-radius: 100%;
+    border: .125em solid var(--border-color);
+    background: var(--main-color);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.piece_second-team {
+    --main-color: var(--c-piece-second-main);
+    --border-color: var(--c-piece-second-border);
+}
+
+.piece__hover {
+    box-shadow: 0 0 1.5rem .25rem var(--main-color);
+}
