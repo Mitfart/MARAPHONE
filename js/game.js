@@ -38,7 +38,7 @@ function SetupGame(board) {
     const boardPieces = CreateBoardMatrix(board);
     AddFirstTeamPieces(board);
     AddSecondTeamPieces(board);
-    
+
 
     function CreateBoardMatrix(board) {
         const height = Height(board);
